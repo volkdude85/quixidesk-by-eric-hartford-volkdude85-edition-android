@@ -233,9 +233,10 @@ A file edited on the desktop was pulled on the next pass; the copy it replaced w
 
 ## What is deliberately not in this repository
 
-* **No APK.** A build embeds whichever persona it was compiled with, and a real one carries a person's
-  memory. Shipping a binary here would either leak that or need rebuilding on every persona change.
-  Build your own; Appendix A has the exact commands.
+* **No private build.** The APK in [`release/`](release/) is built from the public persona with no
+  memory of anyone, and the build refuses to produce one that carries a second persona or identifying
+  material. What is *not* here is any build made from somebody's own persona and memory — that is
+  theirs to keep, and rebuilding it is one command: `PERSONA=… ./build-apk.sh arm64 release`.
 * **No credentials, keys, tokens or addresses.** The scanner in `tools/doxcheck.py` fails the build
   if they appear; see `SCAN-REPORT.md`.
 * **No upstream application source.** This kit documents and wraps the app; it does not redistribute it.
