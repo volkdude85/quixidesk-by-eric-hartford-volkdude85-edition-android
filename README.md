@@ -9,9 +9,13 @@ someone who did not build it: a photographed setup guide, the two-way sync servi
 Linux desktop, and the scripts that regenerate both.
 
 ```
-docs/guide/      the setup guide — 16 pages, PDF and source, with every figure regenerable
-sync/            the desktop half of the sync: one Python file, no dependencies
-tools/           the scripts that build the guide and scan it for identifying material
+docs/guide/       the setup guide — 16 pages, PDF and source, every figure regenerable
+docs/screenshots/ product shots, taken from a device and cropped to the app surface
+docs/VISIT-CHECKLIST.md   what to take and the order to do it in, for setting up someone else's phone
+sync/             the desktop half of the sync: one Python file, no dependencies
+tools/            the scripts that build the guide and scan the package for identifying material
+DESIGN.md         what was built, why, what it cost, and what is unfinished
+SCAN-REPORT.md    what the identifier scan looks for, and its result at packaging time
 ```
 
 
