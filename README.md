@@ -1,4 +1,4 @@
-# Quixidesk by Eric Hartford volkdude85 edition android
+# QuixiDesk by Eric Hartford — volkdude85 edition
 
 **QuixiDesk by [Eric Hartford](https://github.com/ehartford) — [QuixiAI/QuixiDesk](https://github.com/QuixiAI/QuixiDesk)** — the engine, the tools, the interface.
 This repository is the *packaging*: the guide, the sync, and the tooling that puts his work on a phone
