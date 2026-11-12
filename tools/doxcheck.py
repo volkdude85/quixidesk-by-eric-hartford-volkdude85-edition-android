@@ -32,6 +32,9 @@ PATTERNS = [
 DENY_FILE = Path(__file__).with_name("doxdeny.txt")
 
 ALLOW = [
+    # git@github.com is a URI user in an SSH remote, not a mailbox — it will appear in any publishing
+    # instructions and flagging it teaches people to ignore the scanner.
+    r'^git@github\.com$',
     # Things that look like a finding but are part of the instructions themselves.
     r"192\.168\.0\.20:8099",     # the example engine address in the text
     r"192\.168\.1\.50",          # the example engine / pairing address in the text

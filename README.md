@@ -26,6 +26,7 @@ docs/guide/        the setup guide — 16 pages, PDF and source, every figure re
 docs/DEVELOPER-NOTES.md  who did what, the conventions in the tree, what is missing
 docs/BROWSERS.md   Brave and Firefox: privacy defaults and debugging worth using
 docs/COMPUTER.md   what to have on the desktop, with the download link for each
+docs/PUBLISHING.md the name, the pre-push checklist, and what never goes in
 docs/DEPENDENCIES.md  what it needs, what it wants, what it refuses to depend on
 docs/SYNC.md       the sync protocol: what it guarantees, and the numbers behind it
 docs/IOS.md        what an iOS port would actually take, and the part that will be refused
