@@ -1,5 +1,8 @@
 # Security
 
+The posture — the five ways this actually hurts someone, and the answer to each — is in
+[`docs/SECURITY-POSTURE.md`](docs/SECURITY-POSTURE.md). This file is just how to report a problem.
+
 ## What leaves the phone
 
 Only two things ever cross the network, and both are chosen by whoever set the phone up:

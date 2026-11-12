@@ -1,0 +1,42 @@
+name: ci
+
+# One definition of "passing": ci/ci.sh. The workflow only provides the machine, the Python and the
+# browser that the guide render needs. If this file and the local script ever disagree, the script is
+# right and this file is broken.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The guide is rendered by headless Chrome. Without it the rebuild step silently has nothing to
+      # run, which would make CI green on a document it never checked.
+      - name: Chrome for the guide render
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends chromium-browser poppler-utils
+          sudo ln -sf "$(command -v chromium-browser)" /usr/local/bin/google-chrome-stable
+
+      - name: Run the gate
+        run: ./ci/ci.sh
+
+      # Keep the built PDF so a reviewer can look at what CI produced, not what was committed.
+      - name: Hand over the rendered guide
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: guide
+          path: docs/guide/QuixiDesk-Android-Guide.pdf
+          if-no-files-found: warn
