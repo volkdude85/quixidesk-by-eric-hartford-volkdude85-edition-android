@@ -104,7 +104,9 @@ The reasoning, the costs and the measurements behind each: [`DESIGN.md`](DESIGN.
 | Mail (page-driven, free Proton included) | **working** — read, open, compose; the final send is a human tap by design |
 | Sync: state and conversations, many chats both ways | **working** — 50 conversations, zero differences, second pass a no-op |
 | Sync: your own files (PDFs, video) | **working** — 40 MB verified byte-identical both directions |
-| Background sync (hourly, on a new network) | **designed, not built** — [`docs/BACKGROUND-SYNC.md`](docs/BACKGROUND-SYNC.md) |
+| Sync settings on the phone: add a computer, run a pass, see what happened | **working** — three fields and a button, no shell involved |
+| Background sync (hourly, unmetered only) | **built** — a WorkManager job calls the same library code; a forced run was accepted by the system, end-to-end execution not yet observed |
+| Resume a transfer that dropped mid-file | **not built** — a dropped upload restarts. The known cost of the biggest files |
 | Calendar | **not wired up** — the client exists, the account plumbing does not |
 | iOS | **nothing** — [`docs/IOS.md`](docs/IOS.md) is the map, not the territory |
 
