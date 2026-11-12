@@ -8,6 +8,7 @@ contents page is wrong the moment a figure grows.
     /usr/bin/python3 build_guide.py
 """
 import re
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -38,9 +39,14 @@ SECTIONS = [
 
 
 def render():
+    # Chrome needs different flags when it has no user namespace (a container without privileged
+    # namespaces), and the flags come from the environment so the workflow itself stays unchanged:
+    # a runner has namespaces, so it passes nothing here.
+    extra = os.environ.get("CHROME_FLAGS", "").split()
     subprocess.run(
         [
             "google-chrome-stable", "--headless", "--disable-gpu", "--no-pdf-header-footer",
+            *extra,
             f"--print-to-pdf={PDF}", "--virtual-time-budget=8000", f"file://{HTML}",
         ],
         check=True, capture_output=True,

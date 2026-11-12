@@ -25,9 +25,13 @@ jobs:
       # run, which would make CI green on a document it never checked.
       - name: Chrome for the guide render
         run: |
+          # Ubuntu ships chromium-browser as a snap stub, and a snap does not run on a runner. The
+          # guide render shells out to google-chrome-stable, so install precisely that.
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends chromium-browser poppler-utils
-          sudo ln -sf "$(command -v chromium-browser)" /usr/local/bin/google-chrome-stable
+          sudo apt-get install -y --no-install-recommends poppler-utils wget
+          wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb
+          sudo apt-get install -y --no-install-recommends /tmp/chrome.deb
+          google-chrome-stable --version
 
       - name: Run the gate
         run: ./ci/ci.sh

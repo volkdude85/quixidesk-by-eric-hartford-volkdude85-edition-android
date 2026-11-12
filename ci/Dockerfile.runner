@@ -1,0 +1,24 @@
+# The same machine GitHub gives us, assembled locally.
+#
+# A green local run proves the *checks* pass. It does not prove the *workflow* runs — the runner image,
+# the missing package, the browser that isn't there. That difference is what this image exists to
+# close: same base distribution, same Python major, same Chromium, same poppler, so `ci/local-runner.sh`
+# exercises the workflow's actual environment instead of a hopeful approximation of it.
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Mirrors the workflow: Python, Chromium for the guide render, poppler for the page count. git and
+# ca-certificates are here because ci.sh checks link targets with the network on.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+      python3 python3-pip python3-venv \
+      poppler-utils ca-certificates wget gnupg \
+      git ca-certificates \
+ && wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb \
+ && apt-get install -y --no-install-recommends /tmp/chrome.deb \
+ && rm -f /tmp/chrome.deb \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /work
+CMD ["./ci/ci.sh"]
