@@ -1,4 +1,8 @@
-# QuixiDesk on Android — install kit
+# QuixiDesk on Android — volkdude85 edition
+
+**QuixiDesk by [Eric Hartford](https://github.com/ehartford)** — the engine, the tools, the interface.
+This repository is the *packaging*: the guide, the sync, and the tooling that puts his work on a phone
+in a specific order. See [`CREDITS.md`](CREDITS.md) and [`docs/DEVELOPER-NOTES.md`](docs/DEVELOPER-NOTES.md).
 
 > **Alpha.** This is working software that nobody else has used yet. The sync protocol has tests, the
 > guide is accurate as of the build in this repository, and the app runs on three devices — but treat
@@ -19,6 +23,8 @@ Linux desktop, and the scripts that regenerate both.
 
 ```
 docs/guide/        the setup guide — 16 pages, PDF and source, every figure regenerable
+docs/DEVELOPER-NOTES.md  who did what, the conventions in the tree, what is missing
+docs/BROWSERS.md   Brave and Firefox: privacy defaults and debugging worth using
 docs/DEPENDENCIES.md  what it needs, what it wants, what it refuses to depend on
 docs/SYNC.md       the sync protocol: what it guarantees, and the numbers behind it
 docs/IOS.md        what an iOS port would actually take, and the part that will be refused

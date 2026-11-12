@@ -71,7 +71,10 @@ def main(paths):
     for path in paths:
         body = text_of(path)
         for literal in deny_list():
-            for m in re.finditer(re.escape(literal), body, re.IGNORECASE):
+            # `re:` entries are patterns, so a surname can be protected without also flagging a public
+            # handle that happens to contain it (\bVolk\b does not match volkdude85).
+            pattern = literal[3:] if literal.startswith("re:") else re.escape(literal)
+            for m in re.finditer(pattern, body, re.IGNORECASE):
                 line = body[:m.start()].count("\n") + 1
                 findings.append((path, f"denied literal", literal, line))
 
