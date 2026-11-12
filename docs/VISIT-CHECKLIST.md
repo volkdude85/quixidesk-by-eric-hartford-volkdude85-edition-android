@@ -38,8 +38,8 @@ For handing the app to someone else's phone. Written to be followed once, standi
 ## Prove it before you leave
 
 - [ ] A message gets a real reply
-- [ ] The persona chip shows **her** assistant's name, not a default
-- [ ] Memory: ask her assistant something only her own memory knows. If it answers, the memory file
+- [ ] The persona chip shows the assistant's own name, not a default
+- [ ] Memory: ask the assistant something only its own memory knows. If it answers, the memory file
       landed; if not, it did not — check `memory/MEMORY.md` before you go
 - [ ] Mail returns a real subject line, if mail was set up
 - [ ] Sync: edit a line on the laptop, sync on the phone, confirm the line appears

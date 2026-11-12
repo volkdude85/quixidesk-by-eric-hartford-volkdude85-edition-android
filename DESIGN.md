@@ -94,7 +94,7 @@ persona, the bundled skills and the memory files are seeded into the engine's da
 run and never overwritten afterwards.
 
 **Why.** The same application is a different assistant depending on the person it is for. Making that a
-build input means one codebase, no forks, no "her version" drifting from "his version". Seeding only
+build input means one codebase and no forks — nobody's assistant drifts from anybody else's. Seeding only
 when absent means an update never erases what the person's assistant has learned.
 
 **What it caught.** The memory files were first written to `state/memory`, while the engine reads
@@ -140,7 +140,7 @@ somebody's address because nobody looked.
 
 | Gap | Why it matters | Where it would go |
 |---|---|---|
-| Conversation history import | memory file yes, past transcripts no — her assistant starts with its knowledge but not its conversations | a one-time importer, phone or desktop side |
+| Conversation history import | memory file yes, past transcripts no — the assistant starts with its knowledge but not its conversations | a one-time importer, phone or desktop side |
 | Sync configuration without a shell | release builds are not debuggable, so the two fields need a UI | Settings → Sync |
 | Android Auto | the menu path is documented from the app's own structure, not photographed on a device that has it | a device with Android Auto installed |
 | In-app mail send | one tap from done; blocked by trusted-input requirements | the user's own tap, or an accessibility service, which is a bigger decision |
