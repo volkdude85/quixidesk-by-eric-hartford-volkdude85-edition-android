@@ -64,6 +64,10 @@ fi
 if [ "$FAST" = "0" ]; then
   step "guide rebuild"
   before=$(sha256sum docs/guide/QuixiDesk-Android-Guide.pdf 2>/dev/null | cut -d' ' -f1)
+  # Chrome stamps a creation time and a document id into every PDF, so two renders of identical
+  # sources are never byte-identical. The check is the contents page, not the bytes: put the committed
+  # file back afterwards, or every CI run leaves the tree dirty and the next commit carries noise.
+  restore_pdf() { git checkout -- docs/guide/QuixiDesk-Android-Guide.pdf 2>/dev/null || true; }
   if $PY tools/build_guide.py > /tmp/ci-guide.log 2>&1; then
     if grep -q 'drift after stamping: none' /tmp/ci-guide.log; then
       ok "renders, contents page measured, no drift"
