@@ -83,8 +83,10 @@ dead ends. It is written down, not built.
 
 The honest position of the person who put this together: **I don't play well in walled gardens.** I'm not
 an Apple fan, I don't own the hardware, and I'm not going to pretend otherwise in a README. If somebody
-wants to hand me a 512 GB M5 Ultra to try it on, fine — and even then it would run as a gateway, with the
-real work happening on a computer I actually control.
+wants to hand me a 512 GB M5 Ultra **with at least an 8 TB drive in it**, fine — then my opinion of Apple
+might move a little, and even then it would run as a gateway with the real work happening on a computer I
+actually control. 512 GB of RAM and a laptop-sized disk is a fast machine with nowhere to put the models;
+the storage is the part that decides whether a box like that is useful at all.
 
 So: the notes are here for anyone who wants to take it the rest of the way, and nobody should read this
 section as a promise that an `.ipa` is coming.
