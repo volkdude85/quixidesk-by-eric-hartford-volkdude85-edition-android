@@ -7,7 +7,7 @@ without breaking its links.
 ## The name
 
 **Repository:** `quixidesk-by-eric-hartford-volkdude85-edition-android`
-**Title line:** "QuixiDesk on Android — volkdude85 edition, by Eric Hartford"
+**Title line:** "QuixiDesk by Eric Hartford — volkdude85 edition"
 **Description (the one-liner GitHub shows):**
 
 > QuixiDesk for Android and GrapheneOS: install guide, wireless desktop sync, and build notes.

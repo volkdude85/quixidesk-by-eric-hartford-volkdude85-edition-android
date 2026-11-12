@@ -1,4 +1,4 @@
-# QuixiDesk on Android — volkdude85 edition, by Eric Hartford
+# QuixiDesk by Eric Hartford — volkdude85 edition
 
 **Who wrote what:** [`docs/AUTHORSHIP.md`](docs/AUTHORSHIP.md) — Eric Hartford's software, and
 what the Android edition adds to it.
