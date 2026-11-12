@@ -7,8 +7,7 @@
 
 ## The application is not ours
 
-**QuixiDesk** — the engine, the tool system, the interface this kit documents — is **Eric Hartford's**
-project ([github.com/ehartford](https://github.com/ehartford)). Everything here exists because that
+**QuixiDesk** — the engine, the tool system, the interface this kit documents — is **Eric Hartford's** project — [QuixiAI/QuixiDesk](https://github.com/QuixiAI/QuixiDesk). Everything here exists because that
 work is good enough to put in a pocket, and because he builds it in the open where someone else can
 carry it somewhere he has not been yet.
 

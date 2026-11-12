@@ -2,7 +2,7 @@
 
 The short version, in the words of the person who did the assembly:
 
-> **QuixiDesk by Eric Hartford, volkdude85 edition, Android.** Eric Hartford wrote the software. I am the
+> **QuixiDesk by Eric Hartford, volkdude85 edition, Android.** Eric Hartford wrote the software ([QuixiAI/QuixiDesk](https://github.com/QuixiAI/QuixiDesk)). I am the
 > smart arse who threw it together in a specific order.
 
 That sentence is the whole attribution policy. It appears in the app's sidebar, on its About panel, in

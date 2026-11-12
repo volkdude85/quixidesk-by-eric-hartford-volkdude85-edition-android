@@ -1,6 +1,6 @@
 # QuixiDesk on Android — volkdude85 edition
 
-**QuixiDesk by [Eric Hartford](https://github.com/ehartford)** — the engine, the tools, the interface.
+**QuixiDesk by [Eric Hartford](https://github.com/ehartford) — [QuixiAI/QuixiDesk](https://github.com/QuixiAI/QuixiDesk)** — the engine, the tools, the interface.
 This repository is the *packaging*: the guide, the sync, and the tooling that puts his work on a phone
 in a specific order. See [`CREDITS.md`](CREDITS.md) and [`docs/DEVELOPER-NOTES.md`](docs/DEVELOPER-NOTES.md).
 
@@ -206,4 +206,4 @@ figure is generated, so a UI change means re-running two commands rather than ed
 
 Tooling and documentation: MIT (`LICENSE`). The guide text and figures: CC BY 4.0.
 QuixiDesk itself is a separate project with its own licence and its own repository; nothing of it is
-redistributed here. Point this line at the upstream URL before publishing.
+redistributed here. Upstream: https://github.com/QuixiAI/QuixiDesk
