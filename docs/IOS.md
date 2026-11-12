@@ -3,6 +3,35 @@
 Nothing here is iOS code. This is what someone would need to know to build one, written by someone who
 has just spent the day porting the Android half and would rather you did not repeat the dead ends.
 
+## Start here: the foundation that already exists
+
+The Android half is not a sketch — it is the working reference for every one of these problems, and none
+of it is hidden. Read these before writing anything, in this order.
+
+| Read this | Because it answers |
+|---|---|
+| `app/src-tauri/src/lib.rs` | how the engine is brought up inside a mobile process, how the persona and memory are seeded on first run, how the app talks to the engine over its own IPC |
+| `app/src-tauri/src/mail_bridge.rs`, `mail_jobs.rs` | how mail is read by driving the provider's page, when the platform has no IMAP — the same trick works with `WKWebView` |
+| `app/src-tauri/src/sync.rs` | the phone side of the sync configuration (the convergence itself lives in the engine's `quixi-mobile` crate) |
+| `app/src-tauri/src/capabilities.rs` + the Kotlin `CapabilityPermissions.kt` | how optional permissions are declared but never requested until a person flips a switch — `Contacts`, `Photos`, `CoreLocation` have the same shape |
+| `app/ui/` | the entire interface: it is a web view, and this is the JavaScript. WKWebView runs it unchanged |
+| `build-apk.sh` | what a full build actually does end to end: persona staged, engine cross-compiled, assets refreshed, signed, scanned |
+
+Then the platform pieces, in the order they will bite you:
+
+1. **The engine.** `cargo build --target aarch64-apple-ios` and `aarch64-apple-ios-sim`, `lipo` them into one
+   `.a`, link it into the Xcode target. Same crates, no source changes.
+2. **The shell.** Tauri v2 supports iOS with the same configuration file; the Rust side is the same code.
+   Where Android has Kotlin, iOS has Swift — and the four pieces are: a `WKWebView` host, `BGTaskScheduler`
+   for the hourly sync, `CoreLocation`/`Contacts` for the optional capabilities, and a `URLSession`-based
+   bridge for mail instead of the loopback HTTP bridge.
+3. **The build.** Xcode will insist on signing, a provisioning profile and a paid account before anything
+   runs on a phone. That wall is the reason there is no `.ipa` here, and it is not something a README can
+   port around.
+
+**What you will not get from me:** a build, a signing identity, or an App Store submission. What you will get:
+every question answered, and the Android side kept clean enough to copy from.
+
 ## What carries over for free
 
 The hard part of this app — the engine, the tools, the mail client, the sync protocol — is Rust with a C

@@ -104,6 +104,12 @@ The bar is simple and it is the same bar as everything else here: **there has to
 person using it.** For Android the benefit was obvious — a phone that runs the whole assistant in its pocket,
 with no computer in the loop. iOS hasn't shown me that yet, and until it does, the notes are where it stays.
 
+**And hating the architecture doesn't mean withholding anything from the people who live in it.** No gatekeeping,
+no "figure it out yourself": [`docs/IOS.md`](docs/IOS.md) now names the exact files in this repository that are the
+foundation — the Rust crates that port unchanged, the shell that shows how the engine is wired into a mobile
+WebView, the Kotlin pieces and their iOS equivalents. I disagree with your OS; I'll do what I can to support you
+from here.
+
 So: the notes are here for anyone who wants to take it the rest of the way, and nobody should read this
 section as a promise that an `.ipa` is coming.
 
