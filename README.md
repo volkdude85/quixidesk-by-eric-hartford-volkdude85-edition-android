@@ -51,6 +51,16 @@ SCAN-REPORT.md     what the identifier scan looks for, and its result at packagi
 ```
 
 
+## Change it
+
+The persona is one file, not a rebuild. In the app: **Settings → Personas** lists every persona on the
+phone, switches with a tap, keeps a copy of the one in use before switching, and accepts a new one
+pasted in as text. On a computer the same idea is `~/.quixi/persona.md`.
+
+The package ships **one** persona — the public edition — and the build refuses to finish if a second
+one appears or if any identifying material is inside the APK. What you do with it after that is yours:
+rename it, rewrite it, replace it.
+
 ## About the snark
 
 The assistant mutters while it works — a rotating title line on the home screen, and a running commentary
