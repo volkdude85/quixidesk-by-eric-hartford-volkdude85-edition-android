@@ -33,7 +33,24 @@ while IFS= read -r f; do
   if bash -n "$f" 2>/dev/null; then ok "$f"; else bad "$f"; fi
 done < <(find . -name '*.sh' -not -path './.git/*' | sort)
 
-# ── 3. No identifying material ─────────────────────────────────────────────────
+# ── 3. The sync protocol's own tests ───────────────────────────────────────────
+# The code that decides what may cross the wire, and what happens when two machines disagree, is the
+# part of this project most able to lose someone's data. It gets real tests, on a real temp directory,
+# with no mocks: whitelist refusals, traversal, conflict copies, revision rules, streaming, short
+# bodies, and absurd content lengths.
+step "sync route tests"
+if $PY -m unittest discover -s tests -q 2>/tmp/ci-tests.log; then
+  ok "$(grep -oE 'Ran [0-9]+ tests' /tmp/ci-tests.log | tail -1)"
+else
+  bad "sync route tests failed"
+  tail -20 /tmp/ci-tests.log
+fi
+
+# ── 4. Documentation links resolve ─────────────────────────────────────────────
+step "documentation links"
+if $PY tools/check_links.py; then ok "every internal link resolves"; else bad "a link points at nothing"; fi
+
+# ── 5. No identifying material ─────────────────────────────────────────────────
 step "identifier scan"
 if $PY tools/doxcheck.py . ; then
   ok "clean"
@@ -41,7 +58,7 @@ else
   bad "the package carries identifying material (see above)"
 fi
 
-# ── 4. The guide still builds, and its contents page still tells the truth ─────
+# ── 6. The guide still builds, and its contents page still tells the truth ─────
 # Skipped with --fast. The build re-measures every page number and fails on drift, so this is a real
 # check rather than "the command exited 0".
 if [ "$FAST" = "0" ]; then
@@ -63,7 +80,7 @@ if [ "$FAST" = "0" ]; then
                            || printf '   note the PDF changed this run (fine if the sources did)\n'
 fi
 
-# ── 5. Figures exist and are not empty ──────────────────────────────────────────
+# ── 7. Figures exist and are not empty ──────────────────────────────────────────
 step "figures"
 missing=0
 for img in $(grep -o 'src="figures/[^"]*"' docs/guide/guide.html | sed 's/src="//;s/"//'); do
@@ -76,7 +93,7 @@ for img in $(grep -o 'src="figures/[^"]*"' docs/guide/guide.html | sed 's/src="/
 done
 [ "$missing" = "0" ] && ok "every figure referenced by the guide is present"
 
-# ── 6. Screenshots referenced by the README exist ──────────────────────────────
+# ── 8. Screenshots referenced by the README exist ──────────────────────────────
 step "screenshots"
 sm=0
 for img in $(grep -o 'docs/screenshots/[a-z]*\.png' README.md | sort -u); do

@@ -1,5 +1,14 @@
 # QuixiDesk on Android — install kit
 
+> **Alpha.** This is working software that nobody else has used yet. The sync protocol has tests, the
+> guide is accurate as of the build in this repository, and the app runs on three devices — but treat
+> every number as "measured once, by one person". It is **open code**: read it, fork it, change it, ship
+> your own. Nothing here is a locked product, and none of it needs permission.
+>
+> Not sure where to start? [`docs/DEPENDENCIES.md`](docs/DEPENDENCIES.md) says what you need,
+> [`docs/SYNC.md`](docs/SYNC.md) explains the sync, [`docs/IOS.md`](docs/IOS.md) is what an iOS port
+> would take, and [`docs/TESTING.md`](docs/TESTING.md) says what has actually been checked.
+
 Documentation and tooling for running QuixiDesk entirely on an Android phone:
 the engine, the persona, the tools and the mail reader live inside the app, so it works in a pocket on
 mobile data with no computer involved.
@@ -10,7 +19,9 @@ Linux desktop, and the scripts that regenerate both.
 
 ```
 docs/guide/        the setup guide — 16 pages, PDF and source, every figure regenerable
+docs/DEPENDENCIES.md  what it needs, what it wants, what it refuses to depend on
 docs/SYNC.md       the sync protocol: what it guarantees, and the numbers behind it
+docs/IOS.md        what an iOS port would actually take, and the part that will be refused
 docs/TESTING.md    how claims are checked — real path, second pass, byte-identical, geometric layout
 docs/BACKGROUND-SYNC.md  what Android allows for a sync that happens by itself, and the plan
 docs/SECURITY-POSTURE.md the five ways this actually hurts someone, and the answer to each
@@ -45,6 +56,31 @@ was compiled with; it is a build parameter, not a hard-coded feature.
   from a phone app at all (free Proton has no IMAP and no SMTP).
 * Syncs its memory, persona and preferences with a desktop on the same network. Neither side is the
   master: the newer copy wins, the older one is kept, and the two converge.
+
+## Where it stands
+
+| Piece | State |
+|---|---|
+| App on a phone: chat, tools, persona, memory | **working** — Android 14 / 16 / 17, two OEMs and an emulator |
+| Mail (page-driven, free Proton included) | **working** — read, open, compose; the final send is a human tap by design |
+| Sync: state and conversations, many chats both ways | **working** — 50 conversations, zero differences, second pass a no-op |
+| Sync: your own files (PDFs, video) | **working** — 40 MB verified byte-identical both directions |
+| Background sync (hourly, on a new network) | **designed, not built** — [`docs/BACKGROUND-SYNC.md`](docs/BACKGROUND-SYNC.md) |
+| Calendar | **not wired up** — the client exists, the account plumbing does not |
+| iOS | **nothing** — [`docs/IOS.md`](docs/IOS.md) is the map, not the territory |
+
+## How we recommend using it
+
+* **Give it a job.** It is best at "look at this and tell me", "fix this and prove it", "read these and
+  summarise". It is not a search engine and it will not know today's news unless you let it fetch.
+* **Let it use tools.** The reason this is worth carrying is that it can run commands, read files and
+  check its own work. A chat-only assistant is a worse chatbot.
+* **Keep one machine as the source of truth for documents**, and let sync carry the state. Two people
+  editing the same file on two devices is the one thing a converge-style sync cannot solve for you.
+* **Turn USB debugging off when you are done.** It is a workshop door.
+* **Change anything.** The persona is a file, the sync root is a flag, the whole thing is a few thousand
+  lines of readable Rust and JavaScript. If you disagree with a decision in `DESIGN.md`, fork it and
+  prove yourself right — that is what it is for.
 
 ## Requirements
 
