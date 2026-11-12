@@ -6,8 +6,8 @@ without breaking its links.
 
 ## The name
 
-**Repository:** `quixidesk-android`
-**Title line:** QuixiDesk on Android — volkdude85 edition
+**Repository:** `quixidesk-by-eric-hartford-volkdude85-edition-android`
+**Title line:** "Quixidesk by Eric Hartford volkdude85 edition android"
 **Description (the one-liner GitHub shows):**
 
 > Install guide, desktop sync and build notes for running QuixiDesk on an Android phone. Packaging only —
@@ -15,9 +15,8 @@ without breaking its links.
 
 **Topics:** `quixidesk` `android` `rust` `tauri` `sync` `documentation` `sideload` `palm-pilot` `self-hosted`
 
-Names considered and rejected: `quixidesk-android-kit` (kit sounds like a box of parts),
-`quixidesk-pocket` (implies it is the pocket *edition* of the app rather than the packaging around it),
-`quixidesk-sync` (one of the four things in here, and not the biggest).
+GitHub allows 100 characters, spaces not among them, so the title above becomes the slug
+`quixidesk-by-eric-hartford-volkdude85-edition-android` (53 characters) and the title is used everywhere a person reads it.
 
 ## Before the first push
 
@@ -43,7 +42,7 @@ Run the gate, then walk the list. Do not skip the ones marked **irreversible**.
 ## The push itself
 
 ```bash
-git remote add origin git@github.com:<you>/quixidesk-android.git
+git remote add origin git@github.com:<you>/quixidesk-by-eric-hartford-volkdude85-edition-android.git
 git branch -M main
 git push -u origin main
 ```
