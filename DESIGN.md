@@ -73,6 +73,11 @@ data loss that the person cannot see happening; asking a person to resolve a mer
 both is the only option that is safe by default, and it means a sync can never be the reason someone
 loses their assistant's memory.
 
+The protocol has since grown two things worth reading in full in [`docs/SYNC.md`](docs/SYNC.md):
+conversations are **unioned** rather than resolved (one file per chat, so two devices that talked in
+different places simply end up holding both), and a phone may know **several computers**, trying each
+in turn with a three-second timeout so one that is switched off never blocks another.
+
 **Measured:** `pushed 3 · pulled 1 · errors 0`, then `pushed 0 · pulled 0` on the next pass. A file
 edited on the desktop was pulled on the following pass; the replaced copy stayed on disk.
 

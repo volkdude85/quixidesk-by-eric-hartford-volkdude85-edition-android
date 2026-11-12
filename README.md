@@ -9,13 +9,15 @@ someone who did not build it: a photographed setup guide, the two-way sync servi
 Linux desktop, and the scripts that regenerate both.
 
 ```
-docs/guide/       the setup guide — 16 pages, PDF and source, every figure regenerable
-docs/screenshots/ product shots, taken from a device and cropped to the app surface
-docs/VISIT-CHECKLIST.md   what to take and the order to do it in, for setting up someone else's phone
-sync/             the desktop half of the sync: one Python file, no dependencies
-tools/            the scripts that build the guide and scan the package for identifying material
-DESIGN.md         what was built, why, what it cost, and what is unfinished
-SCAN-REPORT.md    what the identifier scan looks for, and its result at packaging time
+docs/guide/        the setup guide — 16 pages, PDF and source, every figure regenerable
+docs/SYNC.md       the sync protocol: what it guarantees, and the numbers behind it
+docs/AI-HANDOFF.md written for whoever picks this up next — invariants, layout, honest gaps
+docs/screenshots/  product shots, taken from a device and cropped to the app surface
+docs/VISIT-CHECKLIST.md   what to take and the order to do it in, when setting up someone else's phone
+sync/              the desktop half of the sync: one Python file, no dependencies
+tools/             the scripts that build the guide and scan the package for identifying material
+DESIGN.md          what was built, why, what it cost, and what is unfinished
+SCAN-REPORT.md     what the identifier scan looks for, and its result at packaging time
 ```
 
 
@@ -65,14 +67,20 @@ python sync/sync_server.py --root ~/QuixiDesk --token <a-long-random-string>
 
 On Windows, double-click `sync/windows/start-sync-server.cmd` after putting your token in it.
 
-On the phone, one file in the app's private storage points at it:
+On the phone, one file in the app's private storage points at it — one entry per computer, because a
+person may have more than one and the phone should not have to be told which one it is near:
 
 ```json
-{ "url": "http://192.168.1.50:8788", "token": "the-same-string" }
+{ "homes": [
+    { "name": "study", "url": "http://192.168.1.50:8788", "token": "…" },
+    { "name": "cabin", "url": "http://10.0.0.20:8788",  "token": "…" }
+] }
 ```
 
-The app then syncs every time it opens. `sync/set_sync.py` writes that file over adb so nobody has to
-type a path into a device shell.
+The app syncs every time it opens, trying each computer in turn with a three-second timeout, so one
+that is switched off costs three seconds and does not block the other. `sync/set_sync.py` writes that
+file over adb so nobody has to type a path into a device shell. The full protocol is in
+[`docs/SYNC.md`](docs/SYNC.md).
 
 ### What syncs, and what never does
 

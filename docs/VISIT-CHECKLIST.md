@@ -4,27 +4,27 @@ For handing the app to someone else's phone. Written to be followed once, standi
 
 ## Take
 
-- [ ] Her APK, built with her persona: `QuixiDesk-Scintilla-arm64.apk` (or whichever persona is hers)
+- [ ] The APK built with their persona — `PERSONA_SRC=<persona>.md ./build-apk.sh arm64 release`
 - [ ] `QuixiDesk-Android-Guide.pdf` — so she keeps the instructions after you leave
 - [ ] This laptop, with `sync/sync_server.py` and a token already chosen
 - [ ] Your phone or a USB-C cable, whichever gets the file across
-- [ ] A model service key for her, if she does not already have one
+- [ ] A model service key for them, if they do not already have one
 
 ## Before you sit down
 
-- [ ] Confirm her phone is **arm64** (every phone since ~2016 is) and Android 10 or newer
-- [ ] Decide her persona name and check it is the one compiled into her APK — the app shows it in the
+- [ ] Confirm their phone is **arm64** (every phone since ~2016 is) and Android 10 or newer
+- [ ] Decide the persona name and check it is the one compiled into the APK — the app shows it in the
       top bar, so this is visible at a glance
-- [ ] Choose the sync token now, not in her kitchen:
+- [ ] Choose the sync token now, not in their kitchen:
 
       head -c 24 /dev/urandom | base64 | tr -d '/+=' | head -c 28
 
-## On her phone, in this order
+## On their phone, in this order
 
-1. **Transfer** the APK: cable → Internal storage → Download, or send it to her by mail.
+1. **Transfer** the APK: cable → Internal storage → Download, or send it to them by mail.
 2. **Install** — tap the file, allow from this source, Install, Open.
 3. **Developer options** — Settings → About phone → tap Build number seven times.
-4. **Wireless debugging** only if you want to update her remotely later; otherwise skip it and leave
+4. **Wireless debugging** only if you want to update their phone remotely later; otherwise skip it and leave
    USB debugging off. This is the one step with a security cost, and it is optional.
 5. **Battery** — Settings → Apps → QuixiDesk → Battery → Unrestricted. Do not skip this one; without it
    the app is killed in the background and appears to forget things.
@@ -32,8 +32,8 @@ For handing the app to someone else's phone. Written to be followed once, standi
    a model. Send one message and confirm a reply comes back before moving on.
 7. **Mail**, if she wants it — ask the assistant to check mail, sign in on the page it opens, clear the
    human check once. Then ask it for one subject line to prove it works.
-8. **Sync** — put the desktop and the token into her app's `sync.json` (or run `sync/set_sync.py`), start
-   the server on the laptop, then open her app. Ask it to sync. It should report what moved.
+8. **Sync** — put the desktop and the token into the app's `sync.json` (or run `sync/set_sync.py`), start
+   the server on the laptop, then open the app. Ask it to sync. It should report what moved.
 
 ## Prove it before you leave
 
@@ -46,8 +46,8 @@ For handing the app to someone else's phone. Written to be followed once, standi
 
 ## Leave behind
 
-- [ ] The PDF in her Downloads, and a note of where it is
-- [ ] The laptop server left running, or a shortcut on her desktop to start it
+- [ ] The PDF in their Downloads, and a note of where it is
+- [ ] The desktop server left running, or a shortcut to start it
 - [ ] Nothing with a credential written on paper
 
 ## If something fails, in order of likelihood
