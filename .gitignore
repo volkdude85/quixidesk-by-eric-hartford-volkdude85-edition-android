@@ -1,5 +1,6 @@
 # Build outputs and anything that describes one particular person
 *.apk
+!release/*.apk
 *.aab
 *.keystore
 *.jks

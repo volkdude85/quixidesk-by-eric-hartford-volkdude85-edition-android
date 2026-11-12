@@ -51,6 +51,20 @@ SCAN-REPORT.md     what the identifier scan looks for, and its result at packagi
 ```
 
 
+## Install it
+
+The build in this repository is [`release/QuixiDesk-public-arm64.apk`](release/QuixiDesk-public-arm64.apk) —
+arm64, signed, one persona (the public edition), no memory of anyone. Verify it first if you like:
+
+    cd release && sha256sum -c SHA256SUMS
+
+Then, on the phone: Settings → About phone → tap **Build number** seven times, Developer options →
+**Install unknown apps** for whatever you transfer with, copy the `.apk` over, and tap it. The
+screenshots for every one of those steps are in [`docs/guide/`](docs/guide/).
+
+If you would rather build it yourself, `PERSONA=public-nora ./build-apk.sh arm64 release` in the
+source tree does the same thing and refuses to finish if the package carries anything it should not.
+
 ## Change it
 
 The persona is one file, not a rebuild. In the app: **Settings → Personas** lists every persona on the
