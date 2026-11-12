@@ -25,6 +25,7 @@ Linux desktop, and the scripts that regenerate both.
 docs/guide/        the setup guide — 16 pages, PDF and source, every figure regenerable
 docs/DEVELOPER-NOTES.md  who did what, the conventions in the tree, what is missing
 docs/BROWSERS.md   Brave and Firefox: privacy defaults and debugging worth using
+docs/COMPUTER.md   what to have on the desktop, with the download link for each
 docs/DEPENDENCIES.md  what it needs, what it wants, what it refuses to depend on
 docs/SYNC.md       the sync protocol: what it guarantees, and the numbers behind it
 docs/IOS.md        what an iOS port would actually take, and the part that will be refused
@@ -62,6 +63,37 @@ was compiled with; it is a build parameter, not a hard-coded feature.
   from a phone app at all (free Proton has no IMAP and no SMTP).
 * Syncs its memory, persona and preferences with a desktop on the same network. Neither side is the
   master: the newer copy wins, the older one is kept, and the two converge.
+
+
+## How it fits together, in one page
+
+```
+┌─────────────────────────── phone ───────────────────────────┐
+│  Tauri shell (Rust)                                          │
+│   ├── engine + tools, compiled in as a static library         │
+│   ├── the persona and memory, seeded on first run             │
+│   └── one web view: the interface, and the mail page it drives │
+└───────────────┬──────────────────────────────────────────────┘
+                │  plain HTTP, LAN only, token-gated
+┌───────────────▼─────────────── desktop ──────────────────────┐
+│  room daemon (Python, no dependencies)                        │
+│   ├── /api/state   which machines are alive, on which engine  │
+│   ├── /api/send    message relay between agent instances      │
+│   └── /api/sync/*  deterministic file sync  ← this project    │
+└───────────────────────────────────────────────────────────────┘
+```
+
+Three ideas carry the whole design, and each one is a decision rather than a default:
+
+* **The engine runs on the phone**, not on a desktop reached over the network. A companion that stops
+  working when you leave the house is not a companion.
+* **Mail is read by driving the provider's own page** inside the app, because free Proton has no IMAP
+  and no SMTP. The password is only ever typed into the provider's form, never into a screen we drew.
+* **Sync converges; it never overwrites.** State resolves by recency with the loser kept, conversations
+  are unioned by id and never shortened, and there is no delete verb.
+
+The reasoning, the costs and the measurements behind each: [`DESIGN.md`](DESIGN.md),
+[`docs/SYNC.md`](docs/SYNC.md), [`docs/TESTING.md`](docs/TESTING.md).
 
 ## Where it stands
 
