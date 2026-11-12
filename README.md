@@ -88,6 +88,15 @@ might move a little, and even then it would run as a gateway with the real work 
 actually control. 512 GB of RAM and a laptop-sized disk is a fast machine with nowhere to put the models;
 the storage is the part that decides whether a box like that is useful at all.
 
+**And I'm not buying an iPhone to develop on.** Sorry — not happening. More power to the Apple people, genuinely;
+it is not my product and I am not going to pay for the privilege of building for a store that decides
+whether my own work may run on my own device. If somebody wants to take the iOS notes the rest of the way,
+all the best with it.
+
+The bar is simple and it is the same bar as everything else here: **there has to be a clear benefit to the
+person using it.** For Android the benefit was obvious — a phone that runs the whole assistant in its pocket,
+with no computer in the loop. iOS hasn't shown me that yet, and until it does, the notes are where it stays.
+
 So: the notes are here for anyone who wants to take it the rest of the way, and nobody should read this
 section as a promise that an `.ipa` is coming.
 
