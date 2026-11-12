@@ -1,4 +1,8 @@
-# QuixiDesk by Eric Hartford — volkdude85 edition
+# QuixiDesk on Android — volkdude85 edition, by Eric Hartford
+
+Runs on ordinary Android and on GrapheneOS — a degoogled Android, which is the build it was mostly
+tested on. The application is **Eric Hartford's**; this repository is the packaging, the install guide
+and the sync, put together by volkdude85.
 
 **QuixiDesk by [Eric Hartford](https://github.com/ehartford) — [QuixiAI/QuixiDesk](https://github.com/QuixiAI/QuixiDesk)** — the engine, the tools, the interface.
 This repository is the *packaging*: the guide, the sync, and the tooling that puts his work on a phone

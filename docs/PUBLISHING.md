@@ -7,11 +7,11 @@ without breaking its links.
 ## The name
 
 **Repository:** `quixidesk-by-eric-hartford-volkdude85-edition-android`
-**Title line:** "QuixiDesk by Eric Hartford — volkdude85 edition"
+**Title line:** "QuixiDesk on Android — volkdude85 edition, by Eric Hartford"
 **Description (the one-liner GitHub shows):**
 
-> Install guide, desktop sync and build notes for running QuixiDesk on an Android phone. Packaging only —
-> the application is Eric Hartford's.
+> QuixiDesk for Android and GrapheneOS: install guide, wireless desktop sync, and build notes.
+> Packaging only — the application is Eric Hartford's software, not mine.
 
 **Topics:** `quixidesk` `android` `rust` `tauri` `sync` `documentation` `sideload` `palm-pilot` `self-hosted`
 
