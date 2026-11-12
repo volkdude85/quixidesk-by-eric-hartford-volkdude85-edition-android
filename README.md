@@ -1,0 +1,104 @@
+# QuixiDesk on Android — install kit
+
+Documentation and tooling for running QuixiDesk entirely on an Android phone:
+the engine, the persona, the tools and the mail reader live inside the app, so it works in a pocket on
+mobile data with no computer involved.
+
+This repository is **not** the application source. It is the part that makes the application usable by
+someone who did not build it: a photographed setup guide, the two-way sync service for a Windows or
+Linux desktop, and the scripts that regenerate both.
+
+```
+docs/guide/      the setup guide — 16 pages, PDF and source, with every figure regenerable
+sync/            the desktop half of the sync: one Python file, no dependencies
+tools/           the scripts that build the guide and scan it for identifying material
+```
+
+## What the app does
+
+* Runs an assistant on the phone itself — no server, no account required for local use.
+* Reads mail by driving the provider's own web page, which is what makes a free Proton account usable
+  from a phone app at all (free Proton has no IMAP and no SMTP).
+* Syncs its memory, persona and preferences with a desktop on the same network. Neither side is the
+  master: the newer copy wins, the older one is kept, and the two converge.
+
+## Requirements
+
+| For | You need |
+|---|---|
+| Running it on a phone | Android 10 or newer, ~1 GB free, and either an API key for a model service or a model server on your LAN |
+| Building the app | Rust with Android targets, JDK 21, the Android NDK, the Tauri CLI (see `docs/guide`, Appendix A) |
+| Running the desktop sync | Python 3 — nothing else |
+
+## Install, in short
+
+1. Build the APK (Appendix A of the guide) or obtain one from whoever builds it.
+2. Copy it to the phone, tap it, allow installing from that source.
+3. Open it, set a model service in the app's settings, and optionally sign in to mail once.
+4. Full walkthrough with screenshots: [`docs/guide/QuixiDesk-Android-Guide.pdf`](docs/guide/QuixiDesk-Android-Guide.pdf).
+
+## Desktop sync, in short
+
+On the desktop:
+
+```bash
+python sync/sync_server.py --root ~/QuixiDesk --token <a-long-random-string>
+```
+
+On Windows, double-click `sync/windows/start-sync-server.cmd` after putting your token in it.
+
+On the phone, one file in the app's private storage points at it:
+
+```json
+{ "url": "http://192.168.1.50:8788", "token": "the-same-string" }
+```
+
+The app then syncs every time it opens. `sync/set_sync.py` writes that file over adb so nobody has to
+type a path into a device shell.
+
+### What syncs, and what never does
+
+| Syncs | Never syncs |
+|---|---|
+| `memory/MEMORY.md`, `memory/USER.md`, `memory/FAMILY-REFERENCE.txt` | passwords, API keys, provider credentials |
+| `persona.md` | sessions, transcripts, workspace files, artifacts |
+
+The server serves a fixed list of paths, refuses anything outside it, refuses `../`, and refuses to
+answer without the token.
+
+### Measured behaviour
+
+Run against a real phone, both directions:
+
+```
+pass 1   pushed 3 · pulled 1 · errors 0
+pass 2   pushed 0 · pulled 0 · errors 0      ← converged
+```
+
+A file edited on the desktop was pulled on the next pass; the copy it replaced was kept as
+`persona.md.conflict-<machine>-<timestamp>`. Nothing is deleted by a sync, ever.
+
+## What is deliberately not in this repository
+
+* **No APK.** A build embeds whichever persona it was compiled with, and a real one carries a person's
+  memory. Shipping a binary here would either leak that or need rebuilding on every persona change.
+  Build your own; Appendix A has the exact commands.
+* **No credentials, keys, tokens or addresses.** The scanner in `tools/doxcheck.py` fails the build
+  if they appear; see `SCAN-REPORT.md`.
+* **No upstream application source.** This kit documents and wraps the app; it does not redistribute it.
+
+## Regenerating the guide
+
+```bash
+/usr/bin/python3 tools/build_guide.py     # renders and re-stamps the contents page from measurements
+/usr/bin/python3 tools/doxcheck.py docs/guide/guide.html docs/guide/QuixiDesk-Android-Guide.pdf
+```
+
+`tools/capture.sh` re-takes the device screenshots; `tools/annotate.py` redraws the callouts. Every
+figure is generated, so a UI change means re-running two commands rather than editing images by hand.
+
+## Licence
+
+Tooling and documentation: MIT (`LICENSE`). The guide text and figures: CC BY 4.0.
+QuixiDesk itself is a separate project with its own licence and its own repository; nothing of it is
+redistributed here. Point this line at the upstream URL before publishing.

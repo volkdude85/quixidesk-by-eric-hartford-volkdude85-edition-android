@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>QuixiDesk on Android — Install &amp; Handover Guide</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 16mm; }
+  @page :first { margin: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "DejaVu Serif", Georgia, serif;
+    font-size: 10.4pt; line-height: 1.45; color: #14161a; margin: 0;
+  }
+  h1, h2, h3, .step-num, .kicker, table th, code, .badge { font-family: "DejaVu Sans", Helvetica, Arial, sans-serif; }
+
+  /* ---------- cover ---------- */
+  .cover { height: 100vh; box-sizing: border-box; padding: 34mm 20mm 18mm;
+           background: #0f1216; color: #f4f6f9; page-break-after: always; }
+  .cover .kicker { letter-spacing: .28em; font-size: 9pt; color: #ffce00; text-transform: uppercase; }
+  .cover h1 { font-size: 32pt; line-height: 1.1; margin: 10mm 0 6mm; font-weight: 700; }
+  .cover .sub { font-size: 13pt; color: #b9c2d0; max-width: 120mm; }
+  .cover .rule { height: 6px; background: #ffce00; width: 46mm; margin: 12mm 0; }
+  .cover .meta { margin-top: 26mm; font-size: 9.6pt; color: #8f9aab; }
+  .cover .meta b { color: #e8edf4; }
+  .cover .who { margin-top: 6mm; font-size: 10.5pt; color: #ced6e2; max-width: 130mm; }
+
+  /* ---------- structure ---------- */
+  h2 { font-size: 16.5pt; margin: 0 0 3mm; padding-bottom: 2mm; border-bottom: 2.5px solid #0f1216; }
+  h3 { font-size: 11.6pt; margin: 7mm 0 2mm; }
+  p { margin: 0 0 3mm; }
+  ul, ol { margin: 0 0 3mm 5mm; padding: 0; }
+  li { margin-bottom: 1.6mm; }
+  .page-break { page-break-before: always; }
+  .note { border-left: 5px solid #ffce00; background: #fffaea; padding: 3mm 4mm; margin: 4mm 0; font-size: 9.8pt; }
+  .warn { border-left: 5px solid #c62828; background: #fdeceb; padding: 3mm 4mm; margin: 4mm 0; font-size: 9.8pt; }
+  .tip  { border-left: 5px solid #1565c0; background: #eef4fd; padding: 3mm 4mm; margin: 4mm 0; font-size: 9.8pt; }
+  .note b, .warn b, .tip b { font-family: "DejaVu Sans", Arial, sans-serif; }
+
+  /* ---------- step blocks ---------- */
+  .step { display: flex; gap: 6mm; margin: 6mm 0 2mm; page-break-inside: avoid; }
+  .step-num { flex: 0 0 13mm; height: 13mm; border-radius: 50%; background: #0f1216; color: #ffce00;
+              font-size: 15pt; font-weight: 700; text-align: center; line-height: 13mm; }
+  .step-body { flex: 1; }
+  .step-body h3 { margin-top: 0; }
+
+  /* ---------- figures ---------- */
+  figure { margin: 4mm 0 5mm; page-break-inside: avoid; }
+  /* Inside a step the figure sits beside its instructions instead of under them: the text wraps
+     around it, the page stops being half empty, and the screenshot gets more width than a
+     full-width-but-short column would give it. */
+  .step-body figure { float: right; width: 64mm; margin: 0 0 3mm 6mm; }
+  .step-body figure img { width: 100%; }
+  .step-body figure figcaption { font-size: 8.2pt; line-height: 1.35; }
+  /* A phone screenshot is 1080x2340 — at full page width it is taller than A4, so each figure would
+     start its own page. 66 mm wide keeps it legible and leaves room for the step it belongs to. */
+  figure img { width: 66mm; border: 1.2px solid #cdd3dc; border-radius: 3px; display: block; }
+  figure.narrow img { width: 58mm; }
+  figure.narrow { display: flex; gap: 5mm; align-items: flex-start; }
+  figure.narrow .cap { flex: 1; padding-top: 1mm; }
+  figcaption { font-size: 8.8pt; color: #4b5563; margin-top: 2mm; font-family: "DejaVu Sans", Arial, sans-serif; }
+  figcaption b { color: #14161a; }
+
+  /* ---------- tables ---------- */
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm; font-size: 9.3pt; }
+  th { background: #0f1216; color: #ffffff; text-align: left; padding: 2mm 2.5mm; font-size: 9pt; }
+  td { padding: 2mm 2.5mm; border-bottom: 1px solid #d8dde5; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f8fa; }
+  td code { background: #eceff4; padding: 0.4mm 1mm; border-radius: 2px; font-size: 8.6pt; }
+
+  code, pre { font-family: "DejaVu Sans Mono", Consolas, monospace; }
+  pre { background: #0f1216; color: #e6ebf2; padding: 3.5mm 4mm; border-radius: 3px;
+        font-size: 8.5pt; line-height: 1.5; overflow-wrap: anywhere; white-space: pre-wrap; }
+  pre .c { color: #7f8ea3; }
+
+  .toc { margin: 4mm 0 0; }
+  .toc td { padding: 1.6mm 0; border-bottom: 1px dotted #c3cad4; }
+  .toc td:last-child { text-align: right; width: 14mm; }
+  .small { font-size: 8.8pt; color: #4b5563; }
+  .toc a { color: #14161a; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- ============================ COVER ============================ -->
+<div class="cover">
+  <div class="kicker">Install &amp; handover guide</div>
+  <h1>QuixiDesk<br>on Android</h1>
+  <div class="rule"></div>
+  <div class="sub">A pocket assistant that runs the engine on the phone itself — no computer required, no account required for what it does offline.</div>
+  <div class="who">Written for whoever is holding the phone: every step is a screen you can reach, with the exact thing to touch boxed in yellow. The last part is written for the assistant itself, so it can find its own files, its logs, and its dependencies.</div>
+  <div class="meta">
+    <b>Version</b> — built from the current tree<br>
+    <b>Phone shown</b> — Android 16 (emulator). Samsung and Pixel wording differs slightly and is noted where it does.<br>
+    <b>Companion</b> — the Windows 11 laptop, used only for sync. Nothing here needs it.
+  </div>
+</div>
+
+<!-- ============================ TOC ============================ -->
+<h2>What is in this guide</h2>
+<table class="toc">
+  <tr><td><a href="#s1">1 · What you are installing</a></td><td class="pg" data-sec="1">3</td></tr>
+  <tr><td><a href="#s2">2 · Before you start — what the phone needs</a></td><td class="pg" data-sec="2">3</td></tr>
+  <tr><td><a href="#s3">3 · Getting the app file onto the phone</a></td><td class="pg" data-sec="3">4</td></tr>
+  <tr><td><a href="#s4">4 · Allowing the install</a></td><td class="pg" data-sec="4">4</td></tr>
+  <tr><td><a href="#s5">5 · Installing and opening it</a></td><td class="pg" data-sec="5">4</td></tr>
+  <tr><td><a href="#s6">6 · Turning on Developer options</a></td><td class="pg" data-sec="6">5</td></tr>
+  <tr><td><a href="#s7">7 · USB debugging</a></td><td class="pg" data-sec="7">7</td></tr>
+  <tr><td><a href="#s8">8 · Wireless debugging</a></td><td class="pg" data-sec="8">8</td></tr>
+  <tr><td><a href="#s9">9 · Stop Android from closing it</a></td><td class="pg" data-sec="9">9</td></tr>
+  <tr><td><a href="#s10">10 · Give it a brain: your model service</a></td><td class="pg" data-sec="10">9</td></tr>
+  <tr><td><a href="#s11">11 · Signing in to mail, once</a></td><td class="pg" data-sec="11">9</td></tr>
+  <tr><td><a href="#s12">12 · Android Auto</a></td><td class="pg" data-sec="12">11</td></tr>
+  <tr><td><a href="#s13">13 · When something goes wrong</a></td><td class="pg" data-sec="13">11</td></tr>
+  <tr><td><a href="#s14">A · Appendix for the assistant: files, dependencies, logs</a></td><td class="pg" data-sec="14">12</td></tr>
+  <tr><td><a href="#sC">C · The Windows side</a></td><td class="pg" data-sec="16">16</td></tr>
+  <tr><td><a href="#s15">B · Undoing all of it</a></td><td class="pg" data-sec="16">16</td></tr>
+</table>
+
+<div class="page-break"></div>
+<h2 id="s1">1 · What you are installing</h2>
+<p><b>QuixiDesk</b> is one app file. Everything it needs to think, remember, and use tools is inside that file — the engine, the persona, the skills. It does not call home, and it does not need a laptop running in the next room.</p>
+<p>Two things it may reach for, and only when you tell it to:</p>
+<ul>
+  <li><b>A model service</b> — the “brain”. Either a key for a hosted service, or a machine of your own on the same Wi-Fi. Without one it opens and shows its screens but cannot hold a conversation.</li>
+  <li><b>Your mail</b> — only if you sign in. Email is read by driving the mail website inside the app, the way a person would, because free Proton accounts do not allow the app to connect directly.</li>
+</ul>
+
+<h2 id="s2">2 · Before you start</h2>
+<table>
+  <tr><th style="width:34%">What</th><th>Why, and how much</th></tr>
+  <tr><td><b>Android 10 or newer</b></td><td>The app draws itself with the phone’s built-in web view. Android 10 is the oldest version with the pieces it needs.</td></tr>
+  <tr><td><b>About 1 GB free</b></td><td>The app file is about 110 MB; plan for roughly twice that once it is installed. The rest is room for its replies and any files it writes.</td></tr>
+  <tr><td><b>A model service</b></td><td>A key from one of the services listed inside the app, <i>or</i> the address of your own engine on the same network.</td></tr>
+  <tr><td><b>Optional: a Proton account</b></td><td>Only if you want mail in the app. The free tier is fine.</td></tr>
+</table>
+<div class="note"><b>You do not need:</b> a Google account, a computer, or a cable — unless you want to use the debugging features in parts 7, 8 and A.</div>
+
+<div class="page-break"></div>
+<h2 id="s3">3 · Getting the app file onto the phone</h2>
+<p>The file ends in <code>.apk</code>. Any of these work; pick whichever you already do.</p>
+<ul>
+  <li><b>By email or chat</b> — send the file to yourself and tap it in the message. Fastest for one phone.</li>
+  <li><b>By USB cable</b> — plug in, choose <i>File transfer</i> on the phone, and drop the file into the phone’s <i>Download</i> folder.</li>
+  <li><b>By the browser</b> — download it directly on the phone, if it is hosted somewhere you can reach.</li>
+</ul>
+<p>Wherever it lands, it will be in <b>Files → Downloads</b>.</p>
+
+<h3>If the computer is a Windows PC</h3>
+<ol>
+  <li>Plug the phone into the PC with the charging cable.</li>
+  <li>On the phone, pull down the notification shade and tap the USB notification. Choose <b>File transfer</b> — <i>not</i> “Charging only”, which is the default and hides the phone from the PC.</li>
+  <li>In File Explorer the phone appears under <b>This PC</b>. Open it → <b>Internal storage</b> → <b>Download</b>, and copy the <code>.apk</code> and this guide there.</li>
+  <li>Eject safely, unplug, then on the phone open <b>Files → Downloads</b> and tap the file.</li>
+</ol>
+<div class="tip"><b>Nothing needs installing on Windows.</b> No driver, no companion app — the phone appears as a normal drive. If it does not appear, the usual cause is a charge-only cable, or the USB mode still set to “Charging only”.</div>
+
+<h2 id="s4">4 · Allowing the install</h2>
+<p>Android blocks apps that did not come from the Play Store until you say otherwise <b>for the app that is holding the file</b> — Chrome, Files, Gmail, whichever it is.</p>
+<ol>
+  <li>Tap the <code>.apk</code> file.</li>
+  <li>If a warning appears — <i>“For your security, your phone is not allowed to install unknown apps from this source”</i> — tap <b>Settings</b> on that warning.</li>
+  <li>Turn on <b>Allow from this source</b>, then press back.</li>
+  <li>Tap the file again and choose <b>Install</b>.</li>
+</ol>
+<div class="tip"><b>If the “Install unknown apps” list says “No apps”, that is normal.</b> The list only fills in with apps that have actually tried to install something. Tap your file first, and the app that holds it appears there.</div>
+
+<h2 id="s5">5 · Installing and opening it</h2>
+<p>Play Protect may offer to scan the file. It is fine to let it, or to continue without scanning. When it finishes, tap <b>Open</b>.</p>
+<p>First launch takes a few seconds longer than later ones: the app writes its persona and its skills into its own storage. You will see a greeting screen with a box at the bottom that says <i>“You gonna talk to me or what?”</i> — that is the app, ready.</p>
+
+<div class="page-break"></div>
+<h2 id="s6">6 · Turning on Developer options</h2>
+<p>“Developer options” is a hidden settings menu that Android keeps out of the way. Everything in parts 7 and 8 lives there. Turning it on changes nothing by itself — it only makes the menu visible.</p>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div class="step-body">
+    <h3>Open Settings → About phone</h3>
+    <p>On Samsung it is <b>Settings → About phone</b>; on Pixel it is <b>Settings → About phone → Device details</b>. Scroll to the very bottom, past the network details, until you see <b>Build number</b>.</p>
+    <figure>
+      <img src="figures/fig-01-build-number.png" alt="About phone screen with the Build number row boxed">
+      <figcaption><b>1 — Build number.</b> The last row on the About screen. Tap this seven times. On the phone used here the screen is called “About emulated device”; on a real phone it says “About phone”.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2</div>
+  <div class="step-body">
+    <h3>Tap “Build number” seven times</h3>
+    <p>Tap it seven times in a row. After the third tap Android starts counting down: <i>“You are now 4 steps away from being a developer.”</i> Keep going. When you reach zero it says <b>“You are now a developer.”</b></p>
+    <div class="note">If your phone asks for your PIN or pattern at this point, that is the phone confirming it is you. It is not a sign that something went wrong.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">3</div>
+  <div class="step-body">
+    <h3>Find the new menu</h3>
+    <p><b>Settings → System → Developer options</b> (Samsung: <b>Settings → Developer options</b>). Make sure the switch at the top, <b>Use developer options</b>, is on.</p>
+    <figure>
+      <img src="figures/fig-02-dev-options.png" alt="Developer options with the master toggle boxed">
+      <figcaption><b>2 — The master switch.</b> Everything below this row only exists while it is on. Turning it off later hides the whole menu again without undoing anything else.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="page-break"></div>
+<h2 id="s7">7 · USB debugging</h2>
+<p>This is what lets a computer (or a person helping you) look inside the phone: read the app’s log, copy its files out, install a newer build over the top without losing anything. On its own it does nothing.</p>
+
+<div class="step">
+  <div class="step-num">4</div>
+  <div class="step-body">
+    <h3>The fast way to find it</h3>
+    <p>Developer options is a long list. Rather than scrolling, use the search at the top of Settings:</p>
+    <figure class="narrow">
+      <img src="figures/fig-04-search.png" alt="Settings search showing the USB debugging result" style="width:62mm">
+      <div class="cap">
+        <p><b>Type “usb debugging”</b> into Settings’ search box. One result appears, labelled <i>Developer options</i>. Tapping it lands you straight on the row with the switch to flip.</p>
+        <p class="small">This works on every Android version that has the menu, which makes it the most reliable instruction in this guide.</p>
+      </div>
+    </figure>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">5</div>
+  <div class="step-body">
+    <h3>Turn it on</h3>
+    <figure>
+      <img src="figures/fig-03-usb-debugging.png" alt="USB debugging row with its toggle">
+      <figcaption><b>3 — USB debugging.</b> Under the “Debugging” heading, subtitle <i>“Debug mode when USB is connected”</i>. Slide it on; Android asks you to confirm once.</figcaption>
+    </figure>
+    <div class="warn"><b>Turn it off when you are done.</b> While it is on, anyone who plugs in a cable can read the phone. It is a workshop door, not a front door — open it when you are working, close it after.</div>
+  </div>
+</div>
+
+<h2 id="s8">8 · Wireless debugging</h2>
+<p>Same menu, a few rows below USB debugging. This lets a computer on the same Wi-Fi talk to the phone with no cable at all — which is how the phone gets updated while it sits in a pocket.</p>
+<ol>
+  <li>Turn on <b>Wireless debugging</b>.</li>
+  <li>Tap <b>Pair device with pairing code</b>. It shows an address like <code>192.168.1.50:37105</code> and a six-digit code.</li>
+  <li>On the computer, in that same Wi-Fi network, run <code>adb pair 192.168.1.50:37105</code> and type the code when asked. From then on the computer connects with <code>adb connect 192.168.1.50:5555</code>.</li>
+</ol>
+<div class="note">Both devices must be on the same network, and the phone must stay awake while pairing. If the code expires, close the dialog and tap the pairing option again for a fresh one.</div>
+
+<div class="page-break"></div>
+<h2 id="s9">9 · Stop Android from closing it</h2>
+<p>Android aggressively closes apps that are not on screen. An assistant that gets killed in the background forgets what it was doing, so give it an exemption.</p>
+<ol>
+  <li><b>Settings → Apps → QuixiDesk</b>.</li>
+  <li><b>Samsung:</b> Battery → <b>Unrestricted</b>. <b>Pixel:</b> App battery usage → <b>Unrestricted</b>.</li>
+  <li>Optional, Samsung only: <b>Settings → Battery → Background usage limits</b> and remove QuixiDesk from “Sleeping apps” if it appears there.</li>
+</ol>
+
+<h2 id="s10">10 · Give it a brain: your model service</h2>
+<p>The app ships with its engine and its persona, but a model — the thing that composes sentences — is yours to point at. Open the gear at the top right of the app.</p>
+
+<div class="step">
+  <div class="step-num">6</div>
+  <div class="step-body">
+    <h3>Pick a service, paste a key, choose a model</h3>
+    <figure>
+      <img src="figures/fig-05-services.png" alt="Engine panel: connected service and the list of popular services">
+      <figcaption><b>4 — What is connected, and what could be.</b> The top card names the service in use and the exact model. Under <b>Popular services</b>, tap a name, paste the key the service gave you, then pick a model from the list it returns.</figcaption>
+    </figure>
+    <p>If you run your own engine on a computer at home, use the <b>Server</b> and <b>Engine token</b> fields at the top instead of a service key: the address looks like <code>http://192.168.1.50:8099</code>, and the token is the one that machine was started with.</p>
+    <figure>
+      <img src="figures/fig-06-settings-providers.png" alt="App settings with the Providers tab">
+      <figcaption><b>5 — The Providers tab.</b> Inside the app: gear → Settings → Providers. This is the screen to return to whenever a key needs changing or a second model added.</figcaption>
+    </figure>
+    <div class="tip"><b>Which model?</b> Anything that can hold a conversation works. Choose the largest one you are willing to pay for; the small ones answer quickly and forget the middle of a long conversation.</div>
+  </div>
+</div>
+
+<h2 id="s11">11 · Signing in to mail, once</h2>
+<p>Email is optional. When you ask the assistant to read your mail the first time, the app opens the mail website inside itself and waits for you to sign in.</p>
+<ol>
+  <li>Type your address, tap <b>Continue</b>, then your password.</li>
+  <li>Complete whatever check the site shows — a picture puzzle, or the “I am human” box.</li>
+  <li>When your inbox appears, you are done. The app keeps that sign-in, so this happens once, not every time.</li>
+</ol>
+<div class="warn"><b>Never type your password into the app itself.</b> It is only ever typed into the mail site’s own page. If a screen that is not your mail provider asks for it, close it.</div>
+<div class="note">Free Proton accounts cannot be read by apps the normal way — that is why the app drives the page instead. It means the mail screens look exactly like the website when they are being read, then hand you back to your conversation.</div>
+
+<div class="page-break"></div>
+<h2 id="s12">12 · Android Auto</h2>
+<p>If the phone is going to be used in a car, Android Auto has its own hidden developer menu. You need the <b>Android Auto</b> app installed and the phone connected to the car once before these options appear.</p>
+<ol>
+  <li><b>Settings → Connected devices → Android Auto</b>.</li>
+  <li>Scroll to the bottom and tap <b>Version</b> ten times, until a message says developer mode is enabled.</li>
+  <li>Open the three-dot menu → <b>Developer settings</b>.</li>
+  <li>For a car that is not recognising the phone: enable <b>Add new cars to Android Auto</b> and, while connected by cable, <b>Unknown sources</b>.</li>
+</ol>
+<div class="note"><b>Honesty about this part:</b> the screenshots in this guide were taken on a phone without Android Auto installed, so this section is written from the menu path rather than photographed. The wording above matches the current Android Auto app; if a label has moved, the three-dot menu at the top right of Android Auto’s own settings is where it will be.</div>
+
+<h2 id="s13">13 · When something goes wrong</h2>
+<table>
+  <tr><th style="width:30%">What you see</th><th>What it means, and what to do</th></tr>
+  <tr><td>“App not installed”</td><td>An older copy is already there. Uninstall the old one first, or install the newer file over the top — your conversations and persona are kept.</td></tr>
+  <tr><td>“Install unknown apps” is empty</td><td>Normal. Tap the <code>.apk</code> first; the app holding it then appears in that list.</td></tr>
+  <tr><td>It opens but will not answer</td><td>No model service is connected. Gear → pick a service or enter your own server.</td></tr>
+  <tr><td>It answers, then forgets</td><td>Android is killing it in the background. Part 9.</td></tr>
+  <tr><td>Mail says it cannot read the inbox</td><td>You are signed out of the mail site. Ask it to check mail again; sign in on the page it opens.</td></tr>
+  <tr><td>The screen goes blank after tapping mail</td><td>The mail site is loading. If it stays blank for more than a minute, force-close the app and reopen; the conversation is still there.</td></tr>
+  <tr><td>Everything looks tiny</td><td>The app is designed for a phone screen; if text is small, raise <b>Settings → Display → Font size</b> in Android rather than zooming the app.</td></tr>
+</table>
+
+<div class="page-break"></div>
+<h2 id="s14">A · Appendix for the assistant: files, dependencies, logs</h2>
+<p class="small">This part is written for the AI itself, or for whoever is helping it. The rest of the guide is for a person holding the phone.</p>
+
+<h3>Where everything lives</h3>
+<pre><span class="c"># the app package (release / debug builds differ only in the suffix)</span>
+org.quixidesk.android
+org.quixidesk.android.debug
+
+<span class="c"># its private state — persona, skills, workspace, mail bridge token</span>
+/data/user/0/org.quixidesk.android/state/persona.md
+/data/user/0/org.quixidesk.android/state/skills/
+/data/user/0/org.quixidesk.android/state/workspace/
+/data/user/0/org.quixidesk.android/mail-bridge.token     <span class="c"># 0600, loopback only</span>
+
+<span class="c"># the UI it draws, inside the APK</span>
+assets/resources/ui/            <span class="c"># app.js, app.css, mobile.js, human.js</span>
+assets/resources/persona/nora-public.md
+assets/resources/bundled-skills/</pre>
+
+<h3>Building it</h3>
+<pre><span class="c"># toolchain (this machine)</span>
+JAVA_HOME=$HOME/jdk21
+ANDROID_HOME=$HOME/Android/Sdk
+NDK=$ANDROID_HOME/ndk/<version>
+RUSTUP_HOME=$HOME/win-cross/rustup   CARGO_HOME=$HOME/win-cross/cargo
+
+<span class="c"># the app builds its own engine first: quixi-mobile is a static library inside the APK</span>
+cd <repo>/quixidesk-android
+./build-apk.sh arm64 release          <span class="c"># or: ./build-apk.sh x86_64 debug  (emulator)</span>
+<span class="c"># artefact lands in dist/</span>
+
+adb install -r -d dist/QuixiDesk-arm64-release.apk</pre>
+<p class="small">Cross-compiling the engine needs the NDK linker explicitly, or cargo silently uses the host compiler and the link fails:</p>
+<pre>CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER=$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang</pre>
+
+<h3>Watching it work</h3>
+<pre><span class="c"># the three streams that matter</span>
+adb logcat -s app_lib:* Tauri/Console:* RustStdoutStderr:* AndroidRuntime:E
+adb logcat -d | grep -E 'FATAL|Uncaught|mail driver install|persona '
+
+<span class="c"># what the app thinks it is doing right now</span>
+adb shell dumpsys window | grep mCurrentFocus
+adb shell dumpsys activity activities | grep mResumedActivity
+
+<span class="c"># drive the UI from a machine (no touchscreen needed)</span>
+adb shell am start -n com.android.settings/.Settings\$DevelopmentSettingsActivity
+adb shell uiautomator dump /sdcard/ui.xml    <span class="c"># NOTE: fails with "could not get idle state" on</span>
+                                             <span class="c"># some builds; fall back to screencap + eyeballs</span>
+adb exec-out screencap -p > shot.png
+
+<span class="c"># the app's own webview, for inspecting the interface</span>
+adb forward tcp:9455 localabstract:webview_devtools_remote_$(adb shell pidof org.quixidesk.android.debug)
+curl -s http://127.0.0.1:9455/json      <span class="c"># list targets before attaching</span></pre>
+
+<h3>When it will not start</h3>
+<pre>adb logcat -c && adb logcat | grep -E 'FATAL|dlopen|UnsatisfiedLink'
+<span class="c"># state reset without uninstalling (loses persona edits, keeps the app)</span>
+adb shell pm clear org.quixidesk.android
+<span class="c"># a build that must not be debuggable, installed beside the release one</span>
+adb install -r -d dist/QuixiDesk-arm64-debug.apk</pre>
+
+<h3>Dependencies, stated plainly</h3>
+<ul>
+  <li><b>On the phone:</b> nothing beyond Android itself. No Termux, no Python, no Node. The engine is compiled into the APK.</li>
+  <li><b>To build it:</b> Rust with the Android targets, the NDK, JDK 21, and the Tauri CLI.</li>
+  <li><b>Network:</b> only for the model service and mail. Nothing else leaves the phone unless you ask it to.</li>
+</ul>
+
+<div class="page-break"></div>
+<h2 id="sC">C · The Windows side</h2>
+<p>This is how the phone and a home computer keep the same memory. It works now, and it is deliberately boring: a small program on the PC, a folder on each machine, and one rule — <b>the newer copy wins, and the older one is never deleted</b>.</p>
+
+<h3>On the Windows computer, once</h3>
+<ol>
+  <li>Install <b>Python 3</b> from python.org. That is the only requirement; there is nothing else to install.</li>
+  <li>Copy the folder <code>quixidesk-sync</code> somewhere permanent, for example <code>C:\QuixiDesk\sync</code>.</li>
+  <li>Open <code>windows\start-sync-server.cmd</code> in Notepad and change <code>TOKEN</code> to a long random string. Keep a copy of it.</li>
+  <li>Double-click <code>start-sync-server.cmd</code>. A window opens and stays open — that window <i>is</i> the sync service.</li>
+  <li>If Windows Firewall asks, allow it on <b>Private networks</b> only.</li>
+</ol>
+<div class="note">The computer keeps its copy of the assistant’s state in <code>%USERPROFILE%\QuixiDesk</code>. Memory, persona and preferences live there, and that is the folder to back up.</div>
+
+<h3>On the phone, once</h3>
+<p>The phone needs two values — the computer’s address and that token — written into a small file in the app’s own storage:</p>
+<pre>{
+  "url":   "http://192.168.1.50:8788",
+  "token": "the-same-long-string"
+}</pre>
+<p>Whoever sets the phone up writes this once. After that, <b>the app syncs every time it opens</b> — no button, no schedule. A manifest of file hashes is a few hundred bytes, so the phone can check every launch and only move what actually changed.</p>
+
+<h3>What moves, and what never does</h3>
+<table>
+  <tr><th style="width:50%">Syncs</th><th>Never syncs</th></tr>
+  <tr><td>Memory (what it knows about her)</td><td>Passwords, API keys, sign-ins</td></tr>
+  <tr><td>The persona</td><td>Conversations in progress</td></tr>
+  <tr><td>Preferences</td><td>Workspace files, artifacts, scratchpads</td></tr>
+</table>
+
+<h3>When both machines changed the same thing</h3>
+<p>Nothing is lost. The version that lost is saved next to the winner, named <code>&lt;file&gt;.conflict-&lt;machine&gt;-&lt;time&gt;</code>. It stays until someone deletes it, so a bad merge is always recoverable by hand.</p>
+
+<h3>What has actually been tested</h3>
+<p>Run against a real phone, in both directions: three memory files uploaded from the phone, a newer persona pulled down, an edit made on the computer then pulled on the next pass, and a second run immediately after moving nothing at all — which is what “converged” looks like:</p>
+<pre>pass 1   pushed 3 · pulled 1 · errors 0
+pass 2   pushed 0 · pulled 0 · errors 0</pre>
+<div class="warn"><b>What this is not:</b> it is not a live connection. The phone syncs when it opens, not the instant it joins the Wi-Fi, because Android will not let an app watch the network without a permanent notification. If she edits on the phone and wants it on the computer immediately, close and reopen the app.</div>
+
+<div class="page-break"></div>
+<h2 id="s15">B · Undoing all of it</h2>
+<p>Every step here is reversible, and none of them need a computer.</p>
+<table>
+  <tr><th style="width:38%">To undo</th><th>Do this</th></tr>
+  <tr><td>Developer options</td><td>Settings → System → Developer options → turn <b>Use developer options</b> off. The menu hides; nothing else changes.</td></tr>
+  <tr><td>USB debugging</td><td>Same screen, slide <b>USB debugging</b> off. Turn this off whenever you are not using it.</td></tr>
+  <tr><td>Wireless debugging</td><td>Same screen, slide it off. Any computer that was paired loses access immediately.</td></tr>
+  <tr><td>Install-from-this-source permission</td><td>Settings → Apps → Special access → Install unknown apps → the app you allowed → turn it off.</td></tr>
+  <tr><td>Battery exemption</td><td>Settings → Apps → QuixiDesk → Battery → back to <b>Optimised</b>.</td></tr>
+  <tr><td>The app and everything in it</td><td>Long-press the icon → App info → Uninstall. Its persona, skills, conversations and saved sign-ins go with it.</td></tr>
+</table>
+<div class="note"><b>Keep a copy of anything you want to keep first.</b> The app keeps conversations on the phone; uninstalling removes them.</div>
+
+</body>
+</html>

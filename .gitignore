@@ -1,0 +1,18 @@
+# Build outputs and anything that describes one particular person
+*.apk
+*.aab
+*.keystore
+*.jks
+sync.json
+persona.md
+memory/
+__pycache__/
+*.pyc
+.DS_Store
+page-*.png
+cover-*.png
+toc-*.png
+*.log
+
+# local, never committed
+tools/doxdeny.txt
