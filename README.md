@@ -75,6 +75,20 @@ The package ships **one** persona — the public edition — and the build refus
 one appears or if any identifying material is inside the APK. What you do with it after that is yours:
 rename it, rewrite it, replace it.
 
+## Landscape
+
+A phone gets turned sideways, and the first version of this app did not survive it — the composer fell
+off the bottom of a 480 px viewport. These are from the release build, on the emulator, rotated with a
+system setting rather than a gesture.
+
+| Home, landscape | Settings, landscape |
+|---|---|
+| ![Home in landscape](docs/screenshots/landscape-home.png) | ![Settings in landscape](docs/screenshots/landscape-settings.png) |
+
+What changed for it: a `(max-height: 520px)` compact rule hides the decorative rows, the sidebar
+collapses, and the composer keeps its full width and all four buttons. The conversation gets the
+height, not the furniture.
+
 ## About the snark
 
 The assistant mutters while it works — a rotating title line on the home screen, and a running commentary
