@@ -76,7 +76,8 @@ The port, the sync, and the paperwork. Written for this repository:
   Tailscale addresses, serials, keys, passwords), a link checker that runs with the network on, and CI
   that runs both plus the packaging checks on every push.
 - **The voice.** The rotating title line and the working commentary — the jokes land on the software,
-  never on the person using it.
+  never on the person using it. Written for shits and grins: if it ever lands badly, the apology is in
+  the README and the lines are one array in one file.
 
 ---
 

@@ -51,6 +51,21 @@ SCAN-REPORT.md     what the identifier scan looks for, and its result at packagi
 ```
 
 
+## About the snark
+
+The assistant mutters while it works — a rotating title line on the home screen, and a running commentary
+while a turn is in flight. That is in here **for shits and grins**. It is not aimed at anyone.
+
+Every line lands on the software, the situation, or the speaker — never on the person using it. That rule
+is written at the top of both files that hold the lines, and it is the reason they are safe to read with
+your mother looking over your shoulder.
+
+If any of it did offend or hurt someone: our apologies, genuinely. Nothing here is worth a bad afternoon.
+Shake it off, go touch some grass, give a loved one a hug, and move on with life.
+
+If you would rather have an assistant that never jokes, the pool is one array in one file — delete the
+lines and it goes quiet, no code changes required.
+
 ## What it looks like
 
 | | | |

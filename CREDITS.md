@@ -49,4 +49,4 @@ disagrees with his code, his code is right.
 Add your name here for what you changed, and be specific about which is yours. A credits file that
 blames nobody is worthless; one that claims credit for somebody else's work is worse.
 
-The full split, file by file and side by side: [`docs/AUTHORSHIP.md`](AUTHORSHIP.md).
+The full split, file by file and side by side: [`docs/AUTHORSHIP.md`](docs/AUTHORSHIP.md).
