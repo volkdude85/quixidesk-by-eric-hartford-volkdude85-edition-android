@@ -9,7 +9,9 @@ over adb and then runs a sync so the result is visible immediately.
     ./set_sync.py --serial <adb-serial> --check
 
 Works on a debug build (run-as) — a release build is not debuggable, so for a release install the
-same file has to come from a build that ships it, or from the app's own settings screen once that
+same file has to come from a build that ships it, or from the app's own settings screen (Settings →
+Sync → Add a computer, which exists now) — this script remains for automation and for a build that
+cannot be tapped
 exists.
 """
 import argparse
