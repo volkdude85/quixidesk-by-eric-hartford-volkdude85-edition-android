@@ -75,6 +75,20 @@ The package ships **one** persona — the public edition — and the build refus
 one appears or if any identifying material is inside the APK. What you do with it after that is yours:
 rename it, rewrite it, replace it.
 
+## Apple
+
+There is a **preliminary setup for iOS** in [`docs/IOS.md`](docs/IOS.md) — what ports for free (the Rust
+engine, the tools, the mail client, the sync protocol), what does not, and a port order that avoids the
+dead ends. It is written down, not built.
+
+The honest position of the person who put this together: **I don't play well in walled gardens.** I'm not
+an Apple fan, I don't own the hardware, and I'm not going to pretend otherwise in a README. If somebody
+wants to hand me a 512 GB M5 Ultra to try it on, fine — and even then it would run as a gateway, with the
+real work happening on a computer I actually control.
+
+So: the notes are here for anyone who wants to take it the rest of the way, and nobody should read this
+section as a promise that an `.ipa` is coming.
+
 ## Landscape
 
 A phone gets turned sideways, and the first version of this app did not survive it — the composer fell
