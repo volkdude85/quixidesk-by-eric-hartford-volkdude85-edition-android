@@ -11,6 +11,7 @@ Linux desktop, and the scripts that regenerate both.
 ```
 docs/guide/        the setup guide — 16 pages, PDF and source, every figure regenerable
 docs/SYNC.md       the sync protocol: what it guarantees, and the numbers behind it
+docs/TESTING.md    how claims are checked — real path, second pass, byte-identical, geometric layout
 docs/AI-HANDOFF.md written for whoever picks this up next — invariants, layout, honest gaps
 docs/screenshots/  product shots, taken from a device and cropped to the app surface
 docs/VISIT-CHECKLIST.md   what to take and the order to do it in, when setting up someone else's phone

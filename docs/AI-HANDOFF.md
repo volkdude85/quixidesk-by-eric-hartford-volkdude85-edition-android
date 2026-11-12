@@ -67,6 +67,10 @@ one side alone produces a sync that appears to work and quietly does nothing.
 ## Verifying, without trust
 
 ```bash
+# the whole suite, before believing anything you changed
+cargo test -p quixi-mcp --lib        # 78 pass; a red test means find out WHICH side is wrong
+cargo test --lib                    # the app crate, sync client
+
 # the package must not carry identifying material
 /usr/bin/python3 tools/doxcheck.py .
 
@@ -80,6 +84,7 @@ curl -s 'http://127.0.0.1:8790/api/sync/file?path=memory/MEMORY.md' | sha256sum
 ```
 
 A sync is correct when a second pass moves nothing. Run it twice; the second pass is the assertion.
+The full set of procedures, and what each one has caught, is in [`TESTING.md`](TESTING.md).
 
 ## Known gaps, stated plainly
 
