@@ -1,5 +1,8 @@
 # QuixiDesk by Eric Hartford — volkdude85 edition
 
+> **Apple:** there is no iOS build, and there isn't going to be one from me. I'm not buying an iPhone to
+> develop on and I'm not impressed with the walled garden — [details below](#apple).
+
 **Who wrote what:** [`docs/AUTHORSHIP.md`](docs/AUTHORSHIP.md) — Eric Hartford's software, and
 what the Android edition adds to it.
 
@@ -76,6 +79,10 @@ one appears or if any identifying material is inside the APK. What you do with i
 rename it, rewrite it, replace it.
 
 ## Apple
+
+**Where I stand: not impressed with the walled garden.** Not the store, not the review process that decides
+whether a build of your own software may run on your own phone, not the hardware tax. That is a position,
+not a personality, and it isn't going to soften because the silicon is fast.
 
 There is a **preliminary setup for iOS** in [`docs/IOS.md`](docs/IOS.md) — what ports for free (the Rust
 engine, the tools, the mail client, the sync protocol), what does not, and a port order that avoids the
