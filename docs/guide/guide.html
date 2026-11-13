@@ -102,18 +102,18 @@
   <tr><td><a href="#s2">2 · Before you start — what the phone needs</a></td><td class="pg" data-sec="2">3</td></tr>
   <tr><td><a href="#s3">3 · Getting the app file onto the phone</a></td><td class="pg" data-sec="3">4</td></tr>
   <tr><td><a href="#s4">4 · Allowing the install</a></td><td class="pg" data-sec="4">4</td></tr>
-  <tr><td><a href="#s5">5 · Installing and opening it</a></td><td class="pg" data-sec="5">4</td></tr>
-  <tr><td><a href="#s6">6 · Turning on Developer options</a></td><td class="pg" data-sec="6">5</td></tr>
-  <tr><td><a href="#s7">7 · USB debugging</a></td><td class="pg" data-sec="7">7</td></tr>
-  <tr><td><a href="#s8">8 · Wireless debugging</a></td><td class="pg" data-sec="8">8</td></tr>
-  <tr><td><a href="#s9">9 · Stop Android from closing it</a></td><td class="pg" data-sec="9">9</td></tr>
-  <tr><td><a href="#s10">10 · Give it a brain: your model service</a></td><td class="pg" data-sec="10">9</td></tr>
-  <tr><td><a href="#s11">11 · Signing in to mail, once</a></td><td class="pg" data-sec="11">9</td></tr>
-  <tr><td><a href="#s12">12 · Android Auto</a></td><td class="pg" data-sec="12">11</td></tr>
-  <tr><td><a href="#s13">13 · When something goes wrong</a></td><td class="pg" data-sec="13">11</td></tr>
-  <tr><td><a href="#s14">A · Appendix for the assistant: files, dependencies, logs</a></td><td class="pg" data-sec="14">12</td></tr>
-  <tr><td><a href="#sC">C · The Windows side</a></td><td class="pg" data-sec="16">16</td></tr>
-  <tr><td><a href="#s15">B · Undoing all of it</a></td><td class="pg" data-sec="16">16</td></tr>
+  <tr><td><a href="#s5">5 · Installing and opening it</a></td><td class="pg" data-sec="5">5</td></tr>
+  <tr><td><a href="#s6">6 · Turning on Developer options</a></td><td class="pg" data-sec="6">6</td></tr>
+  <tr><td><a href="#s7">7 · USB debugging</a></td><td class="pg" data-sec="7">8</td></tr>
+  <tr><td><a href="#s8">8 · Wireless debugging</a></td><td class="pg" data-sec="8">9</td></tr>
+  <tr><td><a href="#s9">9 · Stop Android from closing it</a></td><td class="pg" data-sec="9">10</td></tr>
+  <tr><td><a href="#s10">10 · Give it a brain: your model service</a></td><td class="pg" data-sec="10">10</td></tr>
+  <tr><td><a href="#s11">11 · Signing in to mail, once</a></td><td class="pg" data-sec="11">10</td></tr>
+  <tr><td><a href="#s12">12 · Android Auto</a></td><td class="pg" data-sec="12">12</td></tr>
+  <tr><td><a href="#s13">13 · When something goes wrong</a></td><td class="pg" data-sec="13">12</td></tr>
+  <tr><td><a href="#s14">A · Appendix for the assistant: files, dependencies, logs</a></td><td class="pg" data-sec="14">13</td></tr>
+  <tr><td><a href="#sC">C · The Windows side</a></td><td class="pg" data-sec="16">17</td></tr>
+  <tr><td><a href="#s15">B · Undoing all of it</a></td><td class="pg" data-sec="16">17</td></tr>
 </table>
 
 <div class="page-break"></div>
@@ -154,6 +154,14 @@
 </ol>
 <div class="tip"><b>Nothing needs installing on Windows.</b> No driver, no companion app — the phone appears as a normal drive. If it does not appear, the usual cause is a charge-only cable, or the USB mode still set to “Charging only”.</div>
 
+
+<h3>Which file is for your phone</h3>
+<table>
+  <tr><th>File</th><th>Use it for</th></tr>
+  <tr><td><code>QuixiDesk-public-arm64.apk</code></td><td>Every normal Android phone made since roughly 2017 — Pixel, Samsung, OnePlus, Motorola, Xiaomi, and so on.</td></tr>
+  <tr><td>a build ending <code>x86_64</code></td><td>Emulators and a few Chromebooks. It will refuse to install on a phone with <i>INSTALL_FAILED_NO_MATCHING_ABIS</i> — that message means you have the wrong file, not a broken one.</td></tr>
+</table>
+
 <h2 id="s4">4 · Allowing the install</h2>
 <p>Android blocks apps that did not come from the Play Store until you say otherwise <b>for the app that is holding the file</b> — Chrome, Files, Gmail, whichever it is.</p>
 <ol>
@@ -162,6 +170,12 @@
   <li>Turn on <b>Allow from this source</b>, then press back.</li>
   <li>Tap the file again and choose <b>Install</b>.</li>
 </ol>
+<div class="warn"><b>Samsung phones: there is a second gate.</b> Auto Blocker (Settings → Security and privacy
+→ Auto Blocker) refuses apps from outside the store at the system level, and it also refuses
+<code>adb install</code>. If your file will not install and nothing on the warning mentions Auto Blocker,
+that is what is stopping it. Turn Auto Blocker off for the install, and turn it back on afterwards if you
+want it — the app does not need it off once installed.</div>
+
 <div class="tip"><b>If the “Install unknown apps” list says “No apps”, that is normal.</b> The list only fills in with apps that have actually tried to install something. Tap your file first, and the app that holds it appears there.</div>
 
 <h2 id="s5">5 · Installing and opening it</h2>
