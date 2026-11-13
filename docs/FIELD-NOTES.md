@@ -17,6 +17,19 @@ its shape instead: "the handset", "the host", "the LAN address of your own compu
 If you only read one section, read **1** — it is the one that makes people think the software is broken
 when it is working exactly as designed.
 
+### What it looks like when it is working
+
+| Portrait | Landscape |
+|---|---|
+| ![Home, portrait](screenshots/portrait-home.png) | ![Home, landscape](screenshots/landscape-home.png) |
+
+| Settings, landscape | Landscape, second pass |
+|---|---|
+| ![Settings in landscape](screenshots/landscape-settings.png) | ![Landscape on a phone](screenshots/landscape-home.png) |
+
+If your handset does not look like this — if the composer is cut off, or the header has no persona name —
+you are in section 1 or 2 below, not looking at a different product.
+
 ---
 
 ## 1. The provider says "Connected" and every turn still fails
@@ -45,6 +58,11 @@ snaps back to it on the next start.
 the session file for a `model` field that names the old one. Delete that conversation; it will never
 recover on its own.
 
+![The provider panel, insisting everything is fine](screenshots/providers.png)
+
+*This is the panel the error sends you to. It is not lying: the provider really is configured. The
+conversation is the thing pointing somewhere else.*
+
 ---
 
 ## 2. The persona looks loaded and is not
@@ -67,6 +85,10 @@ with the header still showing the old name if the label file survives.
 
 **Fix, in the product:** either read `persona.md` as the prompt, or say plainly in the UI that
 `persona.md` is a label and `AGENTS.md` is the prompt. Right now the app implies the opposite.
+
+![A persona name in the header, a generic assistant behind it](screenshots/portrait-home.png)
+
+*The header can be right while the assistant is wrong. That is the whole trap.*
 
 ---
 
@@ -130,6 +152,13 @@ Sideloading from Windows is not one permission prompt. It is a sequence, and eve
 
 **Time cost, honestly:** the software part is minutes. The trust-and-permissions part is where an evening
 goes — and it is entirely avoidable with a written sequence.
+
+| The seven taps | Where USB debugging lives |
+|---|---|
+| ![Tapping build number](guide/figures/fig-01-build-number.png) | ![Developer options, USB debugging](guide/figures/fig-03-usb-debugging.png) |
+
+Two screens worth recognising on sight: the *Build number* row you tap seven times, and the *USB debugging*
+toggle that appears afterwards. Neither is memorable, and both are in the guide with callouts.
 
 ---
 
