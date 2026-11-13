@@ -68,6 +68,15 @@ screenshots for every one of those steps are in [`docs/guide/`](docs/guide/).
 If you would rather build it yourself, `PERSONA=public-nora ./build-apk.sh arm64 release` in the
 source tree does the same thing and refuses to finish if the package carries anything it should not.
 
+## It arrives with an identity
+
+The build writes the persona and memory **where the engine actually reads its system prompt** —
+`workspace/AGENTS.md` — not only into `persona.md`, which is the display label. Those are two different
+files and conflating them is the reason a fresh install can show the right name in the header while the
+assistant answers as the stock product.
+
+If you edit your persona later, edit both, or let the next build do it for you.
+
 ## Change it
 
 The persona is one file, not a rebuild. In the app: **Settings → Personas** lists every persona on the
