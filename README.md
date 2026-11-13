@@ -78,6 +78,17 @@ The package ships **one** persona — the public edition — and the build refus
 one appears or if any identifying material is inside the APK. What you do with it after that is yours:
 rename it, rewrite it, replace it.
 
+## If it goes wrong
+
+[`docs/FIELD-NOTES.md`](docs/FIELD-NOTES.md) — the ugly parts, written down in the order they bite: a
+provider that says "Connected" while every turn fails, a persona that looks loaded and isn't, an APK that
+will not install because the ABI is wrong, Samsung's Auto Blocker sitting on top of "unknown sources",
+`bmgr restore` reporting success while wiping your data, and why the microphone is silent on a
+de-Googled phone.
+
+It is there so the next person — including me on a different handset — does not spend an evening
+rediscovering it.
+
 ## Apple
 
 **Where I stand: not impressed with the walled garden.** Not the store, not the review process that decides
