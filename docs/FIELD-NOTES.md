@@ -7,6 +7,13 @@ order the problems actually bite, because that is the order you will meet them.
 Nothing in here identifies a person, a machine or a network. Where a detail would, it is described by
 its shape instead: "the handset", "the host", "the LAN address of your own computer".
 
+
+> "Installing that on a phone from scratch sucked — and I'm the guy that created it."
+>
+> The person who put this package together, after a full evening of it. Nothing below contradicts that
+> sentence: this is not a smooth product yet. It is a working one with sharp edges, and the edges are
+> documented here so they can be filed down instead of discovered.
+
 If you only read one section, read **1** — it is the one that makes people think the software is broken
 when it is working exactly as designed.
 
@@ -186,3 +193,44 @@ Not theory — these are in the tree:
 4. Test the microphone early. If the handset has no recogniser, you will not discover it by reading the
    settings.
 5. Never rely on `bmgr restore`.
+
+---
+
+## Developers' gripes (verbatim)
+
+Not polished, on purpose — the complaints are more useful unedited than tidied up.
+
+> "The ADB shit was pissing me off so much."
+
+Between host-key authorisation prompts that hide behind a lock screen, an OEM blocker sitting on top of
+the "unknown sources" toggle, and error messages that name the wrong layer, the transport fights you
+harder than the software does.
+
+> "It always takes me a second to remember where the build information is on Android — you've got to tap
+> seven times. I always have to have a little bit of a reminder, because it's not like I do this every
+> single day."
+
+Which is the whole argument for `docs/guide/`: nobody should have to remember. Tapping *Build number*
+seven times to reveal developer options is not knowledge worth memorising, and needing a reminder is not
+a skill gap.
+
+> "Mom didn't have any of the developer packages installed. It was just kind of a bitch."
+
+A phone that has never been used for development has none of the pieces: no platform tools, no trust
+relationship with the host, nothing. That is the *normal* case, not the edge case, and the instructions
+should assume it — because the person holding it is not going to install a JDK to send a message.
+
+> "It was more of a motherfucker than it needed to be by a long shot. This needs to get smoother."
+
+That is the standard, and it is the honest headline for this document. Everything here exists to make the
+next attempt shorter.
+
+**What "smoother" concretely means, so it is not just a mood:**
+
+- one written sequence for a fresh Samsung handset on Windows, with the Auto Blocker step and the
+  authorisation prompt in it, in order;
+- no step that requires a terminal on the phone;
+- the ABI stated on the download, not discovered at install time;
+- a first run that comes up already configured — persona loaded, provider active — instead of asking the
+  user to find three settings and a hidden file.
+
